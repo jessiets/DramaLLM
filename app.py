@@ -1,8 +1,8 @@
 import streamlit as st
-import chromadb
-from chromadb.utils import embedding_functions
 from chromaDB_store import ChromaDB
 from openai_utils import *
+from tmdb_queries import get_poster_image, get_drama_title
+import random
 
 
 # Setup database
@@ -20,19 +20,37 @@ if "messages" not in st.session_state:
 
 
 # Accept user input
-if prompt := st.chat_input("Type your drama request here!"):
+if prompt := st.text_input("Type your drama request here!"):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
-    # Display user message in chat message container
-    with st.chat_message("user"):
-        st.markdown(prompt)
 
-    with st.chat_message("assistant"):
-        print(f'\nat spinner\n')
-        with st.spinner("Thinking..."):
-            intent = interpret_user_message(prompt, st.session_state.db)
-           
-            # reply = summarize_dramas(dramas)
-            # st.markdown(reply)
-            st.markdown(intent)
-            st.session_state.messages.append({"role": "assistant", "content": intent})
+    with st.spinner("Thinking..."):
+        reply = analyze_results(prompt, st.session_state.db)
+        print(f'\n----------------------------\nreply: {reply}\n-------------------------------\n')
+
+
+        # output results
+        no_result = 0
+        st.write(f"Your request is: {reply[0]['user_input']}\nHere are some dramas that I think you will be interested in!")
+        for i in range(0, len(reply)):
+            if reply[i]['is_match'] == 'no':
+                no_result += 1
+                continue
+
+            col1,col2 = st.columns(2, border=True)
+            # get poster images
+            poster_path = get_poster_image(reply[i]['show_id'])
+            
+            if len(poster_path) > 1:
+                col1.image(poster_path[0])
+                col1.image(poster_path[random.randint(1, len(poster_path)-1)])
+            elif len(poster_path) > 0:
+                col1.image(poster_path[0])
+            else:
+                col1.write("No posters for this drama.")
+            col2.markdown(f"Title: {get_drama_title(reply[i]['show_id'])}\n")
+            col2.markdown(reply[i]['synopsis'])
+
+        if no_result >= len(reply):
+            st.write("Sorry! I don't know any drama that you will like at the moment.")
+        
