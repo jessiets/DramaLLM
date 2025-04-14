@@ -7,7 +7,7 @@ import random
 
 # Setup database
 if 'db' not in st.session_state:
-    st.session_state.db = ChromaDB()
+    st.session_state.db = ChromaDB('collection')
 
 
 st.title('Netflix K-Drama & C-Drama Recommender')
@@ -25,6 +25,7 @@ if prompt := st.text_input("Type your drama request here!"):
     st.session_state.messages.append({"role": "user", "content": prompt})
 
     with st.spinner("Thinking..."):
+        # process results
         reply = analyze_results(prompt, st.session_state.db)
         print(f'\n----------------------------\nreply: {reply}\n-------------------------------\n')
 
