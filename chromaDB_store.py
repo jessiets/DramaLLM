@@ -10,11 +10,11 @@ class ChromaDB:
         self.default_ef = embedding_functions.DefaultEmbeddingFunction()
 
         # set up chromadb connection
-        client = chromadb.PersistentClient()
+        client = chromadb.EphemeralClient()
 
         # Since this is a new object, delete existing collection and make a fresh one
         # print(f"Existing collections: {client.list_collections()}")
-        client.delete_collection(name=collection_name)
+        # client.delete_collection(name=collection_name)
 
         self.collection = client.get_or_create_collection(
             name=collection_name,

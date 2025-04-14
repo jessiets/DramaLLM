@@ -28,8 +28,6 @@ if prompt := st.text_input("Type your drama request here!"):
     with st.spinner("Thinking..."):
         # process results
         reply = analyze_results(prompt, st.session_state.db)
-        print(f'\n----------------------------\nreply: {reply}\n-------------------------------\n')
-
 
         # output results
         no_result = 0

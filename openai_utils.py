@@ -11,8 +11,6 @@ def get_matched_synopsis(keywords, db):
     top_matches = db.chromadb_user_query(keywords)
     top_documents = top_matches['documents'][0]
 
-    print(f"top matches: {top_documents}\n\n")
-
     enhanced_responses = []
     for i in range(0, len(top_documents)):
         prompt = f"""
@@ -38,7 +36,6 @@ def get_matched_synopsis(keywords, db):
 
         enhanced_responses.append(show_dict)
     
-    print(f'enhanced responses: \n{enhanced_responses}\n')
     return enhanced_responses
 
 
@@ -56,7 +53,6 @@ def interpret_user_message(message):
         messages=[{"role": "user", "content": prompt}],
         temperature=0.5
     )
-    print(f"\n\ninterpretted response: {completion}\n\n")
     return completion.choices[0].message.content
 
 
