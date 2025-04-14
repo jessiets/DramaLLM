@@ -9,18 +9,29 @@ HEADERS = {
     "Authorization": f"Bearer {TMDB_API_KEY}"
 }
 
+
+""" 
+@return list of dict (json format)
+"""
 def get_languages():
     url = f"{BASE_URL}/configuration/languages"
     response = requests.get(url, headers=HEADERS)
     return response.json()
 
 
+""" 
+@return list of dict (json format)
+"""
 def get_genres():
     url = f"{BASE_URL}/genre/tv/list?language=en"
     response = requests.get(url, headers=HEADERS)
     return response.json()["genres"]
 
 
+""" 
+@param original language(str), result page(str), region(str)
+@return list of dict (json format)
+"""
 def get_netflix_kdramas_cdramas(lang="", page="1", region='US'):
     url = f"{BASE_URL}/discover/tv"
     params = {
@@ -34,6 +45,10 @@ def get_netflix_kdramas_cdramas(lang="", page="1", region='US'):
     return response.json().get("results", [])
 
 
+""" 
+@param int
+@return list of strings
+"""
 def get_poster_image(id):
     url = f"{BASE_URL}/tv/{id}/images"
 
@@ -49,6 +64,10 @@ def get_poster_image(id):
     return image_paths
 
 
+""" 
+@param int
+@return string
+"""
 def get_drama_title(id):
     url = f"{BASE_URL}/tv/{id}"
     response = requests.get(url, headers=HEADERS)
@@ -56,6 +75,10 @@ def get_drama_title(id):
     return response.json()['name']
 
 
+""" 
+@param int
+@return list of int
+"""
 def get_drama_genre_id(id):
     url = f"{BASE_URL}/tv/{id}"
     response = requests.get(url, headers=HEADERS)
@@ -63,10 +86,25 @@ def get_drama_genre_id(id):
     result = []
     for i in range(0, len(genres)):
         result.append(genres[i]['id'])
-        
+
     return result
 
 
+""" 
+@param int
+@return list of dict (json format)
+"""
+def get_drama_keywords(id):
+    url = f"{BASE_URL}/tv/{id}/keywords"
+    response = requests.get(url, headers=HEADERS)
+
+    return response.json()['results']
+
+
+""" 
+Generate a combined list of kdramas and cdramas, then
+populate to json file.
+"""
 # generating full list of kdramas and cdramas
 def generate_list():
     kdrama_list = []
