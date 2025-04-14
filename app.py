@@ -6,8 +6,9 @@ import random
 
 
 # Setup database
-if 'db' not in st.session_state:
-    st.session_state.db = ChromaDB('collection')
+with st.spinner("Populating database... (this will take about 9-10 minutes)"):
+    if 'db' not in st.session_state:
+        st.session_state.db = ChromaDB('collection')
 
 
 st.title('Netflix K-Drama & C-Drama Recommender')
