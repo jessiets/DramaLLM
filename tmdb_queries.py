@@ -56,6 +56,17 @@ def get_drama_title(id):
     return response.json()['name']
 
 
+def get_drama_genre_id(id):
+    url = f"{BASE_URL}/tv/{id}"
+    response = requests.get(url, headers=HEADERS)
+    genres = response.json()['genres']
+    result = []
+    for i in range(0, len(genres)):
+        result.append(genres[i]['id'])
+        
+    return result
+
+
 # generating full list of kdramas and cdramas
 def generate_list():
     kdrama_list = []
