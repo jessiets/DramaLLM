@@ -97,10 +97,10 @@ class ChromaDB:
     @param string
     @return dict with keys: {data, distances, documents, embeddings, ids, included, metadatas, uris}
     '''
-    def chromadb_user_query(self, question):
+    def chromadb_user_query(self, keywords):
         print(f'querying chromadb...')
         results = self.collection.query(
-            query_texts=[question],  # Chroma will embed this for you
+            query_texts=[keywords],  # Chroma will embed this for you
             n_results=10             # how many results to return
         )
         print(f'received results from chromadb...')

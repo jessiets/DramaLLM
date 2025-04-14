@@ -5,10 +5,10 @@ from api_keys import OPENAI_API_KEY
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 
-def get_matched_synopsis(message, db):
+def get_matched_synopsis(keywords, db):
     print(f"getting top matches...\n\n")
     # @return dict with keys: {data, distances, documents, embeddings, ids, included, metadatas, uris}
-    top_matches = db.chromadb_user_query(message)
+    top_matches = db.chromadb_user_query(keywords)
     top_documents = top_matches['documents'][0]
 
     print(f"top matches: {top_documents}\n\n")
@@ -60,14 +60,42 @@ def interpret_user_message(message):
     return completion.choices[0].message.content
 
 
+def identify_keywords(message):
+    prompt = f""" 
+    Given the user input: {message}
+
+    Instruction:
+    Identify the keywords in the user input that will help describe what the user is looking for in a drama.
+    Output only the keywords, separated by comma.
+
+    For example: 
+    Given the user input: "I am looking for dramas that came from webtoons. Preferably a friends to lovers story plot."
+    Output: "romantic, frienship, based on web novel"
+
+    Given the user input: "Looking for a suspenseful mystery K-drama"
+    Output: "suspenseful, mystery, Korean, thriller, twists"
+    """
+
+    completion = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.5
+    )
+    print(f"\n\nidentified keywords: {completion}\n\n")
+    return completion.choices[0].message.content
+
+
 def analyze_results(message, db):
     analysis = []
+
+    # identify keywords from user message
+    keywords = identify_keywords(message)
 
     # interpret user message
     user_message = interpret_user_message(message)
 
     # get matched synopsis for the show
-    enhanced_responses = get_matched_synopsis(message, db)
+    enhanced_responses = get_matched_synopsis(keywords, db)
 
     for i in range(0, len(enhanced_responses)):
     
@@ -89,6 +117,7 @@ def analyze_results(message, db):
         show_dict = {}
         show_dict['show_id'] = enhanced_responses[i]['show_id']
         show_dict['synopsis'] = enhanced_responses[i]['synopsis']
+        show_dict['keywords'] = keywords
         show_dict['is_match'] = response
         show_dict['user_input'] = user_message
         analysis.append(show_dict)

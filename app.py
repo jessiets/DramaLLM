@@ -32,9 +32,11 @@ if prompt := st.text_input("Type your drama request here!"):
 
         # output results
         no_result = 0
-        st.write(f"Your request is: {reply[0]['user_input']}\nHere are some dramas that I think you will be interested in!")
+        st.write(f"Your request is: {reply[0]['user_input']}\n")
+        st.write(f"Based on your request, I've searched for dramas that match the keywords: {reply[0]['keywords']}\n\n")
+        st.write(f"Here are some dramas that I think you will be interested in!")
         for i in range(0, len(reply)):
-            if reply[i]['is_match'] == 'no':
+            if reply[i]['is_match'].lower() == 'no':
                 no_result += 1
                 continue
 
