@@ -5,18 +5,20 @@ from chromadb.utils import embedding_functions
 
 class ChromaDB:
 
-    def __init__(self):
+    def __init__(self, collection_name):
         # setup embedding
-        default_ef = embedding_functions.DefaultEmbeddingFunction()
+        self.default_ef = embedding_functions.DefaultEmbeddingFunction()
 
         # set up chromadb connection
         client = chromadb.PersistentClient()
 
-        client.delete_collection('collection')
+        # Since this is a new object, delete existing collection and make a fresh one
+        # print(f"Existing collections: {client.list_collections()}")
+        client.delete_collection(name=collection_name)
 
         self.collection = client.get_or_create_collection(
-            name='collection',
-            embedding_function=default_ef
+            name=collection_name,
+            embedding_function=self.default_ef
             )
         
         self.genre_map = {}
@@ -98,8 +100,8 @@ class ChromaDB:
     def chromadb_user_query(self, question):
         print(f'querying chromadb...')
         results = self.collection.query(
-            query_texts=[question], # Chroma will embed this for you
-            n_results=5             # how many results to return
+            query_texts=[question],  # Chroma will embed this for you
+            n_results=10             # how many results to return
         )
         print(f'received results from chromadb...')
         return results

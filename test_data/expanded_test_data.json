@@ -1,0 +1,132 @@
+[
+    {
+        "input": "I want a romantic Korean drama",
+        "genre": "18",
+        "keywords": "romantic, Korean, drama, love, relationships"
+    },
+    {
+        "input": "Give me a funny Chinese show",
+        "genre": "35",
+        "keywords": "funny, Chinese, comedy, lighthearted"
+    },
+    {
+        "input": "Looking for a suspenseful mystery K-drama",
+        "genre": "9648",
+        "keywords": "suspenseful, mystery, Korean, thriller, twists"
+    },
+    {
+        "input": "Show me an action-packed Chinese series",
+        "genre": "10759",
+        "keywords": "action-packed, Chinese, intense, fighting"
+    },
+    {
+        "input": "Something emotional and dramatic from Korea",
+        "genre": "18",
+        "keywords": "emotional, dramatic, Korean, family, feelings"
+    },
+    {
+        "input": "Any light-hearted C-drama to binge?",
+        "genre": "35",
+        "keywords": "light-hearted, Chinese, bingeable, feel-good"
+    },
+    {
+        "input": "I\u2019m in the mood for a historical Korean drama",
+        "genre": "18",
+        "keywords": "historical, Korean, period, royal, traditions"
+    },
+    {
+        "input": "A Chinese crime thriller, please",
+        "genre": "80",
+        "keywords": "crime, thriller, Chinese, detectives, suspense"
+    },
+    {
+        "input": "Recommend a school romance from Korea",
+        "genre": "18",
+        "keywords": "school, romance, Korean, youth, first love"
+    },
+    {
+        "input": "I want a strong female lead in a Korean action show",
+        "genre": "10759",
+        "keywords": "strong female lead, Korean, action, girl power"
+    },
+    {
+        "input": "What\u2019s a good fantasy romance from China?",
+        "genre": "10765",
+        "keywords": "fantasy, romance, Chinese, magic, supernatural"
+    },
+    {
+        "input": "Looking for a mystery thriller K-drama with twists",
+        "genre": "9648",
+        "keywords": "mystery, thriller, Korean, twists, dark"
+    },
+    {
+        "input": "Give me a feel-good Chinese series",
+        "genre": "35",
+        "keywords": "feel-good, uplifting, Chinese, happy, comfort"
+    },
+    {
+        "input": "I need a serious drama about family from Korea",
+        "genre": "18",
+        "keywords": "family, serious, Korean, emotional, life"
+    },
+    {
+        "input": "Any Netflix Chinese series with supernatural elements?",
+        "genre": "10765",
+        "keywords": "supernatural, Chinese, fantasy, ghosts, powers"
+    },
+    {
+        "input": "I want a war-related Korean drama",
+        "genre": "10768",
+        "keywords": "war, military, Korean, history, politics"
+    },
+    {
+        "input": "Recommend a Western-style C-drama",
+        "genre": "37",
+        "keywords": "Western, cowboy, Chinese, rural, shootouts"
+    },
+    {
+        "input": "Got any good animated Korean series?",
+        "genre": "16",
+        "keywords": "animation, Korean, cartoons, anime-style"
+    },
+    {
+        "input": "I love crime documentaries from China",
+        "genre": "99",
+        "keywords": "documentary, Chinese, true crime, investigation"
+    },
+    {
+        "input": "Suggest a family-friendly show from Korea",
+        "genre": "10751",
+        "keywords": "family-friendly, Korean, kids, wholesome"
+    },
+    {
+        "input": "Looking for something for young kids in Chinese",
+        "genre": "10762",
+        "keywords": "kids, Chinese, cartoons, safe for children"
+    },
+    {
+        "input": "Any interesting talk shows from Korea?",
+        "genre": "10767",
+        "keywords": "talk show, Korean, interview, guests"
+    },
+    {
+        "input": "Recommend a Korean soap opera with drama",
+        "genre": "10766",
+        "keywords": "soap opera, Korean, daily drama, romance"
+    },
+    {
+        "input": "I\u2019m into sci-fi with fantasy twists from China",
+        "genre": "10765",
+        "keywords": "sci-fi, fantasy, Chinese, otherworldly"
+    },
+    {
+        "input": "Looking for fun reality shows from Korea",
+        "genre": "10764",
+        "keywords": "reality, Korean, variety, unscripted"
+    },
+    {
+        "input": "I want to watch Korean news programs",
+        "genre": "10763",
+        "keywords": "news, Korean, current events, journalism"
+    }
+]

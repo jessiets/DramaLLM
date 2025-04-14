@@ -1,0 +1,18 @@
+[
+    {
+        "input": "I want a romantic Korean drama",
+        "expected_genre": "18"
+    },
+    {
+        "input": "Give me a funny Chinese show",
+        "expected_genre": "35"
+    },
+    {
+        "input": "Looking for a suspenseful mystery K-drama",
+        "expected_genre": "9648"
+    },
+    {
+        "input": "Show me an action-packed Chinese series",
+        "expected_genre": "10759"
+    }
+]
