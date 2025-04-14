@@ -77,7 +77,6 @@ def identify_keywords(message):
         messages=[{"role": "user", "content": prompt}],
         temperature=0.5
     )
-    print(f"\n\nidentified keywords: {completion}\n\n")
     return completion.choices[0].message.content
 
 
